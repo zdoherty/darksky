@@ -139,8 +139,8 @@ const (
 	TraditionalChinese Lang = "zh-tw"
 )
 
-func Get(key string, lat string, long string, time string, units Units, lang Lang) (*Forecast, error) {
-	res, err := GetResponse(key, lat, long, time, units, lang)
+func Get(key string, lat string, long string, time string, units Units, lang Lang, extend string) (*Forecast, error) {
+	res, err := GetResponse(key, lat, long, time, units, lang, extend)
 	if err != nil {
 		return nil, err
 	}
