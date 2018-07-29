@@ -166,7 +166,7 @@ func FromJSON(reader io.Reader) (*Forecast, error) {
 	return &f, nil
 }
 
-func GetResponse(key string, lat string, long string, time string, units Units, lang Lang) (*http.Response, error) {
+func GetResponse(key string, lat string, long string, time string, units Units, lang Lang, extend string) (*http.Response, error) {
 	coord := lat + "," + long
 
 	var url string
@@ -174,6 +174,9 @@ func GetResponse(key string, lat string, long string, time string, units Units, 
 		url = BASEURL + "/" + key + "/" + coord + "?units=" + string(units) + "&lang=" + string(lang)
 	} else {
 		url = BASEURL + "/" + key + "/" + coord + "," + time + "?units=" + string(units) + "&lang=" + string(lang)
+	}
+	if extend != "" {
+		url = url + "?extend=" + extend
 	}
 
 	res, err := http.Get(url)
